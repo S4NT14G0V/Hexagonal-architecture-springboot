@@ -11,8 +11,8 @@ Feature: Create User
     And The response body contains the created user's details
 
     Examples:
-      | name | email            | password | status | message                   |
-      | John | john@example.com | password |    201 | User created successfully |
+      | name | email            | status | message                   |
+      | John | john@example.com |    201 | User created successfully |
 
   Scenario Outline: Create User Validation Error
     Given A request to create a new user is prepared with name <name> and email <email>
@@ -21,10 +21,10 @@ Feature: Create User
     And The response message is "<message>"
 
     Examples:
-      | name | email            | password | status | message                |
-      |      | john@example.com | password |    400 | User validation failed |
-      | John | invalid-email    | password |    400 | User validation failed |
-      | John | john@example.com |          |    400 | User validation failed |
+      | name | email            | status | message                |
+      |      | john@example.com |    400 | User validation failed |
+      | John | invalid-email    |    400 | User validation failed |
+      | John | john@example.com |    400 | User validation failed |
 
   Scenario Outline: Create User With Existing Email
     Given A user already exists with email <email>
@@ -34,5 +34,5 @@ Feature: Create User
     And The response message is "<message>"
 
     Examples:
-      | name | email            | password | status | message             |
-      | John | john@example.com | password |    409 | User already exists |
+      | name | email            | status | message             |
+      | John | john@example.com |    409 | User already exists |
