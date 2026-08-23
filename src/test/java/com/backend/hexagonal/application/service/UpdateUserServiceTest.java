@@ -22,7 +22,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.backend.hexagonal.application.exception.UserAlreadyExistsException;
 import com.backend.hexagonal.application.exception.UserNotFoundException;
 import com.backend.hexagonal.application.port.in.UpdateUserUseCase;
-import com.backend.hexagonal.application.port.out.UserRepositoryPort;
+import com.backend.hexagonal.application.port.out.UserPersistencePort;
 import com.backend.hexagonal.domain.model.User;
 
 @ExtendWith(MockitoExtension.class)
@@ -30,7 +30,7 @@ import com.backend.hexagonal.domain.model.User;
 class UpdateUserServiceTest {
 
     @Mock
-    private UserRepositoryPort userRepositoryPort;
+    private UserPersistencePort userRepositoryPort;
 
     @InjectMocks
     private UpdateUserService updateUserService;

@@ -2,14 +2,14 @@ package com.backend.hexagonal.application.service;
 
 import com.backend.hexagonal.application.port.in.CreateUserUseCase;
 import com.backend.hexagonal.domain.model.User;
-import com.backend.hexagonal.application.port.out.UserRepositoryPort;
+import com.backend.hexagonal.application.port.out.UserPersistencePort;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.backend.hexagonal.application.exception.UserAlreadyExistsException;
 
 public class CreateUserService implements CreateUserUseCase {
 
     @Autowired
-    private UserRepositoryPort userRepositoryPort;
+    private UserPersistencePort userRepositoryPort;
 
     @Override
     public User execute(CreateUserCommand command) {

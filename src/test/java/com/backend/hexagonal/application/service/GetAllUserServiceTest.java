@@ -6,7 +6,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import com.backend.hexagonal.application.port.out.UserRepositoryPort;
+import com.backend.hexagonal.application.port.out.UserPersistencePort;
 
 import com.backend.hexagonal.domain.model.User;
 import java.util.List;
@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class GetAllUserServiceTest {
 
     @Mock
-    private UserRepositoryPort userRepositoryPort;
+    private UserPersistencePort userRepositoryPort;
 
     @InjectMocks
     private GetAllUserService getAllUserService;

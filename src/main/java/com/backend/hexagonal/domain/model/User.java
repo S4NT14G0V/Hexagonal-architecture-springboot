@@ -22,6 +22,14 @@ public class User {
         this.email = email;
     }
 
+    public User(UUID id, String name, String email) {
+        validateName(name);
+        validateEmail(email);
+        this.id = id;
+        this.name = name;
+        this.email = email;
+    }
+
     public UUID getId() {
         return id;
     }
