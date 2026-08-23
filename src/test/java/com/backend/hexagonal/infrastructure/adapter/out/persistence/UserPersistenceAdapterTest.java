@@ -3,17 +3,23 @@ package com.backend.hexagonal.infrastructure.adapter.out.persistence;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
 import org.springframework.context.annotation.Import;
+import org.springframework.test.context.ActiveProfiles;
+
+import com.backend.hexagonal.infrastructure.adapter.out.UserPersistenceAdapter;
+import com.backend.hexagonal.infrastructure.adapter.out.persistence.mapper.UserPersistenceMapper;
 
 import com.backend.hexagonal.domain.model.User;
 
+@ActiveProfiles("test")
 @DataJpaTest
-@Import(UserPersistenceAdapter.class)
+@Import({ UserPersistenceAdapter.class, UserPersistenceMapper.class })
 class UserPersistenceAdapterTest {
 
     @Autowired
@@ -50,13 +56,16 @@ class UserPersistenceAdapterTest {
         User savedUser = userPersistenceAdapter.save(userToSave);
 
         // Act
-        User result = userPersistenceAdapter.findById(savedUser.getId());
+        Optional<User> persistedUser = userPersistenceAdapter.findById(savedUser.getId());
 
         // Assert
-        assertThat(result).isNotNull();
-        assertThat(result.getId()).isEqualTo(savedUser.getId());
-        assertThat(result.getName()).isEqualTo(savedUser.getName());
-        assertThat(result.getEmail()).isEqualTo(savedUser.getEmail());
+        assertThat(persistedUser).isPresent();
+
+        User expectedUser = persistedUser.get();
+
+        assertThat(expectedUser.getId()).isEqualTo(savedUser.getId());
+        assertThat(expectedUser.getName()).isEqualTo(savedUser.getName());
+        assertThat(expectedUser.getEmail()).isEqualTo(savedUser.getEmail());
     }
 
     @Test
@@ -69,10 +78,10 @@ class UserPersistenceAdapterTest {
                 "john.doe@email.com");
 
         // Act
-        User result = userPersistenceAdapter.findById(user.getId());
+        Optional<User> persistedUser = userPersistenceAdapter.findById(user.getId());
 
         // Assert
-        assertThat(result).isNull();
+        assertThat(persistedUser).isEmpty();
     }
 
     @Test
@@ -118,9 +127,9 @@ class UserPersistenceAdapterTest {
         userPersistenceAdapter.deleteById(savedUser.getId());
 
         // Assert
-        User result = userPersistenceAdapter.findById(savedUser.getId());
+        Optional<User> persistedUser = userPersistenceAdapter.findById(savedUser.getId());
 
-        assertThat(result).isNull();
+        assertThat(persistedUser).isEmpty();
     }
 
     @Test
@@ -154,12 +163,15 @@ class UserPersistenceAdapterTest {
         assertThat(result.getEmail()).isEqualTo(updatedUser.getEmail());
 
         // Verify that the update was actually persisted
-        User persistedUser = userPersistenceAdapter.findById(savedUser.getId());
+        Optional<User> persistedUser = userPersistenceAdapter.findById(savedUser.getId());
 
-        assertThat(persistedUser).isNotNull();
-        assertThat(persistedUser.getId()).isEqualTo(savedUser.getId());
-        assertThat(persistedUser.getName()).isEqualTo(updatedUser.getName());
-        assertThat(persistedUser.getEmail()).isEqualTo(updatedUser.getEmail());
+        assertThat(persistedUser).isPresent();
+
+        User expectedUser = persistedUser.get();
+
+        assertThat(expectedUser.getId()).isEqualTo(savedUser.getId());
+        assertThat(expectedUser.getName()).isEqualTo(updatedUser.getName());
+        assertThat(expectedUser.getEmail()).isEqualTo(updatedUser.getEmail());
     }
 
     @Test
