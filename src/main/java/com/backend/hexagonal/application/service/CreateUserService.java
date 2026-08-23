@@ -17,7 +17,7 @@ public class CreateUserService implements CreateUserUseCase {
         User user = new User(command.name(), command.email());
 
         if (userRepositoryPort.existsByEmail(user.getEmail())) {
-            throw new UserAlreadyExistsException("User with email " + user.getEmail() + " already exists");
+            throw new UserAlreadyExistsException(user.getEmail());
         }
 
         return userRepositoryPort.save(user);

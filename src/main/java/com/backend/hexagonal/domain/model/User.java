@@ -44,6 +44,13 @@ public class User {
         this.email = email;
     }
 
+    public void update(String name, String email) {
+        validateName(name);
+        validateEmail(email);
+        this.name = name;
+        this.email = email;
+    }
+
     private void validateName(String name) {
         if (name == null || name.trim().isEmpty()) {
             throw new InvalidUserDataException("User name cannot be null or empty");

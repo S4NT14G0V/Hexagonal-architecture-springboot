@@ -17,6 +17,6 @@ public class GetByIdUserService implements GetByIdUserUseCase {
     @Override
     public User execute(UUID id) {
         return userRepositoryPort.findById(id)
-                .orElseThrow(() -> new UserNotFoundException("User with ID " + id + " not found"));
+                .orElseThrow(() -> new UserNotFoundException(id));
     }
 }
