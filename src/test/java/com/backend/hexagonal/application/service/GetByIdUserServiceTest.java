@@ -63,7 +63,7 @@ class GetByIdUserServiceTest {
         // Act & Assert
         assertThatThrownBy(() -> getByIdUserService.execute(uuid))
                 .isInstanceOf(UserNotFoundException.class)
-                .hasMessage("User with ID " + uuid + " not found");
+                .hasMessage("User with id " + uuid + " not found");
 
         verify(userRepositoryPort).findById(uuid);
         verifyNoMoreInteractions(userRepositoryPort);
