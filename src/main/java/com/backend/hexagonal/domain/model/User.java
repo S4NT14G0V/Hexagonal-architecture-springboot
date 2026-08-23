@@ -3,25 +3,26 @@ package com.backend.hexagonal.domain.model;
 import com.backend.hexagonal.domain.exception.InvalidUserDataException;
 
 import java.util.Objects;
+import java.util.UUID;
 import java.util.regex.Pattern;
 
 public class User {
 
     private static final Pattern EMAIL_PATTERN = Pattern.compile("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
 
-    private Long id;
+    private UUID id;
     private String name;
     private String email;
 
-    public User(Long id, String name, String email) {
+    public User(String name, String email) {
         validateName(name);
         validateEmail(email);
-        this.id = id;
+        this.id = UUID.randomUUID();
         this.name = name;
         this.email = email;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
