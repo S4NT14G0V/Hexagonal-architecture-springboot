@@ -1,0 +1,14 @@
+cucumber:
+  publish:
+    quiet: true
+  plugin:
+    - pretty
+    - html: build/reports/cucumber/cucumber-report.html
+  glue:
+    com.backend.hexagonal.bdd
+  features:
+    src/test/resources/features
+
+logging:
+  level:
+    com.backend.hexagonal.infrastructure.adapter.out.persistence: DEBUG
