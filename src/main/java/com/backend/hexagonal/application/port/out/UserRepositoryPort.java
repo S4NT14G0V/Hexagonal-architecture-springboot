@@ -9,6 +9,8 @@ import java.util.UUID;
 public interface UserRepositoryPort {
 
     User save(User user);
+    
+    User update(UUID id, User user);
 
     Optional<User> findById(UUID id);
 
