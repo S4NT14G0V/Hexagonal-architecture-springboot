@@ -9,7 +9,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.backend.hexagonal.application.port.out.UserRepositoryPort;
 
 import com.backend.hexagonal.domain.model.User;
-import java.util.List;
 import java.util.UUID;
 import java.util.Optional;
 import com.backend.hexagonal.application.exception.UserNotFoundException;
