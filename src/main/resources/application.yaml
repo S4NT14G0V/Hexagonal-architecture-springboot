@@ -1,3 +1,10 @@
 spring:
-  application:
-    name: hexagonal
+  datasource:
+    url: jdbc:postgresql://localhost:5432/tu_base
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
