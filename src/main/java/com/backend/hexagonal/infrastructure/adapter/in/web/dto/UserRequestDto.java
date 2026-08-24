@@ -1,14 +1,15 @@
 package com.backend.hexagonal.infrastructure.adapter.in.web.dto;
 
-import jakarta.validation.constraints.Email;
+import com.backend.hexagonal.domain.model.User;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
 public record UserRequestDto(
         @NotBlank(message = "User name cannot be null or empty")
         String name,
 
         @NotBlank(message = "User email cannot be null or empty")
-        @Email(message = "User email format is invalid")
+        @Pattern(regexp = User.EMAIL_REGEX, message = "User email format is invalid")
         String email
 ) {
 }
