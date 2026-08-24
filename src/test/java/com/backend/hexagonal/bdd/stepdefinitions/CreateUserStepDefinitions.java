@@ -11,7 +11,7 @@ public class CreateUserStepDefinitions {
     //@Autowired
     //private TestContext testContext;
 
-    @Given("^A request to create a new user is prepared with name (.+) and email (.+)$")
+    @Given("^A request to create a new user is prepared with name (.*) and email (.*)$")
     public void aRequestToCreateANewUserIsPrepared(String name, String email) {
     }
 

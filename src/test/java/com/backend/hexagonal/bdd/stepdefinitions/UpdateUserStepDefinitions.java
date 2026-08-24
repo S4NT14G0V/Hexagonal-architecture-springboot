@@ -1,5 +1,7 @@
 package com.backend.hexagonal.bdd.stepdefinitions;
 
+import java.util.UUID;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 
@@ -11,8 +13,8 @@ public class UpdateUserStepDefinitions {
     // @Autowired
     // private TestContext testContext;
 
-    @Given("A request to update a user is prepared with id (.+), name (.+) and email (.+)$")
-    public void aRequestToUpdateAUserIsPrepared(Long id, String name, String email) {
+    @Given("^A request to update a user is prepared with id (.*), name (.*) and email (.*)$")
+    public void aRequestToUpdateAUserIsPrepared(UUID id, String name, String email) {
     }
 
     // When and Then are already defined in the CommonHttpStepDefinitions context
