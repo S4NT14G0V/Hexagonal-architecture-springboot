@@ -1,4 +1,4 @@
-package com.backend.hexagonal.infrastructure.adapter.out.persistence.repositoy;
+package com.backend.hexagonal.infrastructure.adapter.out.persistence.repository;
 
 import java.util.UUID;
 

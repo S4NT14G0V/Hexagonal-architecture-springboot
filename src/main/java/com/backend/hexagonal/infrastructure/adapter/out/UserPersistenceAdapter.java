@@ -10,7 +10,7 @@ import com.backend.hexagonal.application.port.out.UserPersistencePort;
 import com.backend.hexagonal.domain.model.User;
 import com.backend.hexagonal.infrastructure.adapter.out.persistence.entity.UserJpaEntity;
 import com.backend.hexagonal.infrastructure.adapter.out.persistence.mapper.UserPersistenceMapper;
-import com.backend.hexagonal.infrastructure.adapter.out.persistence.repositoy.SpringDataUserRepository;
+import com.backend.hexagonal.infrastructure.adapter.out.persistence.repository.SpringDataUserRepository;
 
 @Component
 public class UserPersistenceAdapter implements UserPersistencePort {
