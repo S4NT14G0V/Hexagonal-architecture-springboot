@@ -1,18 +1,20 @@
 package com.backend.hexagonal.application.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.UUID;
 
 import com.backend.hexagonal.application.exception.UserAlreadyExistsException;
 import com.backend.hexagonal.application.exception.UserNotFoundException;
 import com.backend.hexagonal.application.port.in.UpdateUserUseCase;
 import com.backend.hexagonal.application.port.out.UserPersistencePort;
 import com.backend.hexagonal.domain.model.User;
-import java.util.UUID;
 
 public class UpdateUserService implements UpdateUserUseCase {
 
-    @Autowired
-    private UserPersistencePort userRepositoryPort;
+    private final UserPersistencePort userRepositoryPort;
+
+    public UpdateUserService(UserPersistencePort userRepositoryPort) {
+        this.userRepositoryPort = userRepositoryPort;
+    }
 
     @Override
     public User execute(UUID id, UpdateUserCommand command) {
